@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wiki-render 管理面板</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="app">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">📖</div>
+        <div class="sidebar-title">wiki-render</div>
+      </div>
+      <ul class="nav-list">
+        <li class="nav-item active" data-page="overview"><span class="nav-icon">📊</span><span>概览</span></li>
+        <li class="nav-item" data-page="bindings"><span class="nav-icon">🔗</span><span>绑定管理</span></li>
+        <li class="nav-item" data-page="logins"><span class="nav-icon">🔑</span><span>登录状态</span></li>
+        <li class="nav-item" data-page="settings"><span class="nav-icon">⚙️</span><span>设置</span></li>
+      </ul>
+      <div class="sidebar-footer"><span id="version-info">v0.1</span></div>
+    </nav>
+
+    <main class="main-content">
+      <header class="topbar">
+        <h1 class="page-title" id="page-title">概览</h1>
+        <button class="btn" id="btn-refresh">🔄 刷新</button>
+      </header>
+
+      <section id="page-overview" class="page active">
+        <div class="cards">
+          <div class="card"><div class="card-label">浏览器</div><div class="card-value" id="ov-browser">…</div></div>
+          <div class="card"><div class="card-label">渲染模式</div><div class="card-value" id="ov-render-mode">…</div></div>
+          <div class="card"><div class="card-label">默认方向</div><div class="card-value" id="ov-screen">…</div></div>
+          <div class="card"><div class="card-label">默认 wiki</div><div class="card-value card-value-sm" id="ov-wiki">…</div></div>
+        </div>
+        <div class="panel">
+          <h2>渲染报告</h2>
+          <div class="stats-row">
+            <span>总计 <b id="rp-total">-</b></span>
+            <span>成功 <b id="rp-ok" class="ok">-</b></span>
+            <span>失败 <b id="rp-fail" class="fail">-</b></span>
+            <span>平均耗时 <b id="rp-avg">-</b>s</span>
+          </div>
+          <table class="table">
+            <thead><tr><th>页面</th><th>耗时(s)</th></tr></thead>
+            <tbody id="rp-slowest"></tbody>
+          </table>
+        </div>
+        <div class="panel">
+          <h2>最近操作（审计）</h2>
+          <table class="table">
+            <thead><tr><th>时间</th><th>动作</th><th>操作者</th><th>目标会话</th><th>结果</th></tr></thead>
+            <tbody id="rp-audit"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="page-bindings" class="page">
+        <div class="panel">
+          <h2>会话绑定</h2>
+          <table class="table">
+            <thead><tr><th>会话</th><th>站点</th><th>API</th><th>方向</th><th>操作</th></tr></thead>
+            <tbody id="bd-list"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="page-logins" class="page">
+        <div class="panel">
+          <h2>登录状态</h2>
+          <table class="table">
+            <thead><tr><th>会话</th><th>用户名</th><th>登录时间</th><th>操作</th></tr></thead>
+            <tbody id="lg-list"></tbody>
+          </table>
+          <p class="hint">登录命令：~wiki login &lt;用户名&gt; &lt;密码&gt; [#群号]（仅私聊）</p>
+        </div>
+      </section>
+
+      <section id="page-settings" class="page">
+        <div class="panel">
+          <h2>数组类设置</h2>
+          <p class="hint">以下为数组类配置（AstrBot 配置界面无法友好编辑长 JSON，改在此处维护）。详细说明见 README。</p>
+          <div class="field">
+            <label for="set-ns-excludes">随机页面排除命名空间（每行一个，格式 ID:数字，如 ID:6；留空=内建默认 1-15，[]=不排除）</label>
+            <textarea id="set-ns-excludes" rows="8" placeholder="ID:1&#10;ID:2&#10;..."></textarea>
+          </div>
+          <div class="field">
+            <label for="set-allowlist">绑定 wiki 白名单（每行一个 API 地址；留空=不限制）</label>
+            <textarea id="set-allowlist" rows="4" placeholder="https://example.org/w/api.php"></textarea>
+          </div>
+          <button class="btn" id="btn-save-arrays">💾 保存</button>
+          <span id="save-arrays-msg" class="hint"></span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

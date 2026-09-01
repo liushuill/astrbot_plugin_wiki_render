@@ -1,0 +1,210 @@
+{
+    "基础设置": {
+        "description": "基础设置",
+        "type": "object",
+        "items": {
+            "default_wiki_api": {
+                "description": "默认 wiki（API 或首页地址，自动解析）",
+                "type": "string",
+                "default": "https://zh.wikipedia.org/w/api.php"
+            },
+            "user_agent": {
+                "description": "请求 UA",
+                "type": "string",
+                "default": "astrbot_plugin_wiki_render/0.1 (AstrBot plugin; MediaWiki viewer)"
+            },
+            "request_timeout": {
+                "description": "API 请求超时（秒）",
+                "type": "int",
+                "default": 15
+            }
+        }
+    },
+    "连接与登录": {
+        "description": "连接与登录",
+        "type": "object",
+        "items": {
+            "verify_tls": {
+                "description": "TLS 证书校验（私域自签站点关闭）",
+                "type": "bool",
+                "default": true
+            },
+            "proxy": {
+                "description": "HTTP 代理",
+                "type": "string",
+                "default": ""
+            },
+            "auth_user": {
+                "description": "Basic 认证用户名",
+                "type": "string",
+                "default": ""
+            },
+            "auth_pass": {
+                "description": "Basic 认证密码",
+                "type": "string",
+                "default": ""
+            }
+        }
+    },
+    "查询与模糊识别": {
+        "description": "查询与模糊识别",
+        "type": "object",
+        "items": {
+            "max_query_pages": {
+                "description": "批量查询上限",
+                "type": "int",
+                "default": 5
+            },
+            "fuzzy_search_limit": {
+                "description": "缺失页候选列表上限",
+                "type": "int",
+                "default": 3
+            },
+            "auto_fuzzy_jump": {
+                "description": "唯一候选自动跳转（默认需确认）",
+                "type": "bool",
+                "default": false
+            },
+            "batch_query": {
+                "description": "多页空格批量查询（实验性）",
+                "type": "bool",
+                "default": false
+            },
+            "rc_limit": {
+                "description": "rc 最近更改条数",
+                "type": "int",
+                "default": 15
+            }
+        }
+    },
+    "渲染设置": {
+        "description": "渲染设置",
+        "type": "object",
+        "items": {
+            "render_mode": {
+                "description": "渲染模式（native/self）",
+                "type": "string",
+                "default": "native",
+                "options": [
+                    "native",
+                    "self"
+                ]
+            },
+            "render_width": {
+                "description": "自建模板宽度（px）",
+                "type": "int",
+                "default": 860
+            },
+            "landscape_width": {
+                "description": "横屏视口宽度（px）",
+                "type": "int",
+                "default": 1280
+            },
+            "portrait_width": {
+                "description": "竖屏视口宽度（px）",
+                "type": "int",
+                "default": 420
+            },
+            "device_scale_factor": {
+                "description": "截图清晰度倍率",
+                "type": "int",
+                "default": 2
+            },
+            "render_timeout": {
+                "description": "渲染超时（秒）",
+                "type": "int",
+                "default": 30
+            },
+            "max_render_height": {
+                "description": "渲染高度上限（px）",
+                "type": "int",
+                "default": 15000
+            },
+            "max_html_size": {
+                "description": "页面 HTML 上限（MB）",
+                "type": "int",
+                "default": 2
+            },
+            "screenshot_type": {
+                "description": "截图格式（png/jpeg）",
+                "type": "string",
+                "default": "png",
+                "options": [
+                    "png",
+                    "jpeg"
+                ]
+            },
+            "send_text_info": {
+                "description": "附带文字信息",
+                "type": "bool",
+                "default": true
+            },
+            "fallback_to_text": {
+                "description": "渲染失败降级文本",
+                "type": "bool",
+                "default": true
+            },
+            "prefetch_on_set": {
+                "description": "绑定后预取站点 CSS",
+                "type": "bool",
+                "default": true
+            },
+            "content_padding": {
+                "description": "截图内容边距（px）",
+                "type": "int",
+                "default": 16
+            },
+            "resource_wait_ms": {
+                "description": "图片加载等待上限（ms）",
+                "type": "int",
+                "default": 5000
+            },
+            "refresh_cooldown": {
+                "description": "--refresh 冷却（秒）",
+                "type": "int",
+                "default": 10
+            },
+            "cache_max_files": {
+                "description": "缓存最大文件数",
+                "type": "int",
+                "default": 50
+            },
+            "cache_max_age": {
+                "description": "缓存保留秒数",
+                "type": "int",
+                "default": 3600
+            }
+        }
+    },
+    "截图方向": {
+        "description": "截图方向",
+        "type": "object",
+        "items": {
+            "screen_default": {
+                "description": "默认方向（landscape/portrait）",
+                "type": "string",
+                "default": "landscape",
+                "options": [
+                    "landscape",
+                    "portrait"
+                ]
+            }
+        }
+    },
+    "高级": {
+        "description": "高级",
+        "type": "object",
+        "items": {
+            "command_suffix_mode": {
+                "description": "命令分号结尾开关",
+                "type": "bool",
+                "default": false
+            },
+            "group_admin_manage": {
+                "description": "群管理级别鉴权",
+                "type": "bool",
+                "default": true
+            }
+        }
+    }
+}
