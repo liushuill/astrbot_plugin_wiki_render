@@ -1,4 +1,5 @@
 name: astrbot_plugin_wiki_render
+display_name: MediaWiki 通用查询
 desc: 通用 MediaWiki 查询渲染插件：发送 ~wiki <页面名> 获取页面内容并渲染为图片回复，支持本地/云端/私域网等多场景 MediaWiki 连接适配。
 version: v0.1.0
 author: liushuill
